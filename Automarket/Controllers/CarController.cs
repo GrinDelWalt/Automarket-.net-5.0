@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Automarket.Controllers
 {
-    public class CarController
+    public class CarController : Controller
     {
         private readonly ICarRepository _carRepository;
 
