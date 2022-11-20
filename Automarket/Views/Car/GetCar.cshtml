@@ -1,0 +1,14 @@
+﻿@model List<Automarket.Domain.Entity.Car>
+
+@{
+	ViewBag.Title = "title";
+	Layout = "_Loyout";
+}
+
+@foreach (var car in Model)
+{
+		<p>@car.Brend</p>	
+		<p>@car.Model</p>	
+		<p>@car.Power</p>	
+		<p>@car.Price</p>	
+}
