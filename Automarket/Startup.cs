@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Automarket
 {
@@ -30,6 +31,7 @@ namespace Automarket
             string connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationDbContext>(options =>
             {
+                options.UseSqlServer(connectionString, b => b.MigrationsAssembly("Automarket"));
                 options.LogTo(Console.WriteLine);
                 options.UseSqlServer(connectionString);
             });

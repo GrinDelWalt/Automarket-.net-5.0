@@ -25,6 +25,7 @@ namespace Automarket.Controllers
         {
             var repository = await _carRepository.Select();
             return View();
+
         }
 
         public IActionResult Privacy()
