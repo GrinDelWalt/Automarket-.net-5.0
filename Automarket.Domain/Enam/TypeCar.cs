@@ -11,7 +11,7 @@ namespace Automarket.Domain.Enam
         [Display(Name = "Хатчбек")]
         HatchBack = 2,
         [Display(Name = "")]
-        Coupe = 3, 
+        Coupe = 3,
         [Display(Name = "Купе")]
         StationWagon = 4,
         [Display(Name = "Кроссовер")]

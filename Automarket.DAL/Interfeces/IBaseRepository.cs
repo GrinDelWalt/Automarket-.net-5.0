@@ -10,13 +10,13 @@ namespace Automarket.DAL.Interfeces
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        bool Create(T entity);
+        Task<bool> Create(T entity);
         /// <summary>
         /// Возврат объекта по ID объект типа (Т)
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        T Get(int id);
+        Task<T> Get(int id);
         /// <summary>
         ///  возврат коллекции элеметов типа (Т)
         /// </summary>
@@ -27,6 +27,6 @@ namespace Automarket.DAL.Interfeces
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        bool Delete(T entity);
+        Task<bool> Delete(T entity);
     }
 }
