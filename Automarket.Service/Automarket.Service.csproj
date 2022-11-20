@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfeces\" />
-    <Folder Include="Implementations\" />
+    <ProjectReference Include="..\Automarket.DAL\Automarket.DAL.csproj" />
+    <ProjectReference Include="..\Automarket.Domain\Automarket.Domain.csproj" />
   </ItemGroup>
 
 </Project>

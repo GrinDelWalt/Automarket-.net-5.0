@@ -1,6 +1,8 @@
 using Automarket.DAL;
 using Automarket.DAL.Interfeces;
 using Automarket.DAL.Repository;
+using Automarket.Service.Implementations;
+using Automarket.Service.Interfeces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
@@ -38,6 +41,7 @@ namespace Automarket
 
             services.AddControllersWithViews();
             services.AddScoped<ICarRepository, CarRepository>();
+            services.AddScoped<ICarService, CarService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

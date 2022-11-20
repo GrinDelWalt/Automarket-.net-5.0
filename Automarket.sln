@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Automarket.DAL", "Automarke
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{CFE0731A-9162-43A7-9857-826C0FB36843}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automarket.Service", "Automarket.Service\Automarket.Service.csproj", "{7BA86106-D245-48A2-A1BE-836592269E0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Automarket.Service", "Automarket.Service\Automarket.Service.csproj", "{7BA86106-D245-48A2-A1BE-836592269E0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
