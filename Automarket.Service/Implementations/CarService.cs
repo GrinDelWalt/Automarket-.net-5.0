@@ -3,6 +3,7 @@ using Automarket.Domain.Enam;
 using Automarket.Domain.Entity;
 using Automarket.Domain.Interfeces;
 using Automarket.Domain.Response;
+using Automarket.Domain.ViewModels.Car;
 using Automarket.Service.Interfeces;
 using System;
 using System.Collections.Generic;
@@ -84,7 +85,25 @@ namespace Automarket.Service.Implementations
                 return baseResponse;
             }
         }
-		public async Task<IBaseResponse<bool>> CreateCar
+		public async Task<IBaseResponse<CarViewModel>> CreateCar(CarViewModel carViewModel)
+		{
+			var baseResponse = new BaseResponse<CarViewModel>();
+			try
+			{
+				Car car = new Car()
+				{
+					Brend = carViewModel.Brend,
+					Model = carViewModel.Model,
+				};
+				await _carRepository.Create(car);
+				return baseResponse;
+			}
+			catch (Exception ex)
+			{
+                baseResponse.Description = $"[GetCar : {ex.Message}]";
+                return baseResponse;
+            }
+		}
 
         public async Task<IBaseResponse<IEnumerable<Car>>> GetAllCars()
 		{

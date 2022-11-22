@@ -1,4 +1,4 @@
-﻿namespace Automarket.Domain.ViewModel.Car
+﻿namespace Automarket.Domain.ViewModels.Car
 {
     public class CarViewModel
     {
