@@ -4,5 +4,6 @@
 	{
 		OK = 200,
 		InternalServerError =500,
+		ObjectNotFound = 0,
 	}
 }
