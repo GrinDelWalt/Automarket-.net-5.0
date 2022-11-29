@@ -5,16 +5,16 @@ namespace Automarket.Domain.Enam
     public enum TypeCar
     {
         [Display(Name = "Кабриолет")]
-        Body = 0,
+        Кабриолет = 0,
         [Display(Name = "Седан")]
-        Sedan = 1,
+        Седан = 1,
         [Display(Name = "Хатчбек")]
-        HatchBack = 2,
-        [Display(Name = "")]
-        Coupe = 3,
+        Хатчбек = 2,
         [Display(Name = "Купе")]
-        StationWagon = 4,
+        Купе = 3,
+        [Display(Name = "Универсал")]
+        Универсал = 4,
         [Display(Name = "Кроссовер")]
-        Crossover = 5,
+        Кроссовер = 5,
     }
 }
