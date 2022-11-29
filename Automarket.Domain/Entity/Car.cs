@@ -13,7 +13,7 @@ namespace Automarket.Domain.Entity
         public string Power { get; set; }
         public int Price { get; set; }
         public string Calour { get; set; }
-        //public string Img { get; set; }
+        public string Img { get; set; }
         public TypeCar TypeCar { get; set; }
     }
 }
