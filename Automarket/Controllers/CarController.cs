@@ -1,8 +1,8 @@
-﻿using Automarket.DAL.Interfeces;
-using Automarket.Domain.Enam;
-using Automarket.Domain.Entity;
+﻿using Automarket.Domain.ViewModels.Car;
 using Automarket.Service.Interfeces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Automarket.Controllers
@@ -19,10 +19,68 @@ namespace Automarket.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCars()
         {
-            var response= await _carService.GetAllCars();
+            var response = await _carService.GetAllCars();
 
+            if (response.StatusCode == Domain.Enam.StatusCode.OK)
+            {
+                return View(response.Data.ToList());
 
-            return View(response.Data);
+            }
+            return RedirectToAction("Error");
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetCar(int id)
+        {
+            var response = await _carService.GetCar(id);
+
+            if (response.StatusCode == Domain.Enam.StatusCode.OK)
+            {
+                return View(response.Data);
+
+            }
+            return RedirectToAction("Error");
+        }
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var response = await _carService.DeleteCar(id);
+            if (response.StatusCode == Domain.Enam.StatusCode.OK)
+            {
+                return RedirectToAction("GetCars");
+            }
+            return RedirectToAction("Error");
+        }
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+
+        public async Task<IActionResult> Save(int id)
+        {
+            if (id == 0)
+            {
+                return View();
+            }
+            var response = await _carService.GetCar(id);
+            if (response.StatusCode == Domain.Enam.StatusCode.OK)
+            {
+                return View(response.Data);
+            }
+            return RedirectToAction("Error");
+        }
+        [HttpPost]
+        public async Task<IActionResult> Save(CarViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (model.Id == 0)
+                {
+                    await _carService.CreateCar(model);
+                }
+                else
+                {
+                    await _carService.Edit(model.Id, model);
+                }
+            }
+            return RedirectToAction("GetCars");
         }
     }
 }

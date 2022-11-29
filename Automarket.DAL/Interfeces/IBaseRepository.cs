@@ -28,5 +28,7 @@ namespace Automarket.DAL.Interfeces
         /// <param name="entity"></param>
         /// <returns></returns>
         Task<bool> Delete(T entity);
+        Task<T> Update(T entity);
+
     }
 }
