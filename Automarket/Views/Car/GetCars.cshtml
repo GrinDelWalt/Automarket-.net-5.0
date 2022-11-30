@@ -66,7 +66,7 @@ else
             <div class="row row-cols-1 col-md-4 text-center">
                 <div class="col" style="padding: 10px;">
                     <div class="card">
-                        <img src="https://images.wallpaperscraft.ru/image/single/mercedes_benz_s_class_w222_112850_800x600.jpg" class="card-img-top" alt="@car.Brend">
+                        <img src="@car.Img" class="card-img-top" alt="@car.Brend">
                         <div class="card-body">
                             <h5 class="card-title">@car.Brend @car.Model</h5>
                             <p class="card-text">@car.Power</p>
@@ -92,7 +92,7 @@ else
     </div>   
 }
 
-@*@section pageScripts {
+@section pageScripts {
     <script>
         const hideCardElement = $('#hideCardsId');
         const showCardElement = $('#showCardsId');
@@ -111,4 +111,5 @@ else
             showCardElement.hide(interval);
             cardElement.show(interval);
         });
-    </script>*@
+    </script>
+    }
