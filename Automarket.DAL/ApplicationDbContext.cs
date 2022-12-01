@@ -11,6 +11,7 @@ namespace Automarket.DAL
         }
 
         public DbSet<Car> Car { get; set; }
+        public DbSet<Image> Images { get; set; }
         /// <summary>
         /// метод дублирует метод из класса стартап, настроить можно и здесь и там
         /// </summary>

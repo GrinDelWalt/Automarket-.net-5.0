@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Automarket.Domain.Enam;
 
 namespace Automarket.Domain.Entity
@@ -15,5 +16,6 @@ namespace Automarket.Domain.Entity
         public string Calour { get; set; }
         public string Img { get; set; }
         public TypeCar TypeCar { get; set; }
+        public List<int> LinksImages { get; set; }
     }
 }

@@ -1,8 +1,8 @@
 ﻿namespace Automarket.Domain.Entity
 {
-    public class CarColour
+    public class Image
     {
         public int Id { get; set; }
-        public string Colour { get; set; }
+        public string Link { get; set; }
     }
 }
