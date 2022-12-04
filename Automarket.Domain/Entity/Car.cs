@@ -16,7 +16,6 @@ namespace Automarket.Domain.Entity
         public string Calour { get; set; }
         public string Img { get; set; }
         public TypeCar TypeCar { get; set; }
-        public List<int> LinksImages { get; set; }
         public string Description { get; set; }
     }
 }
