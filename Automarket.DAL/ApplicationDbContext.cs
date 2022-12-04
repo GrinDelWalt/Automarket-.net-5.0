@@ -1,5 +1,6 @@
 ﻿using Automarket.Domain.Entity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Automarket.DAL
 {
@@ -7,7 +8,8 @@ namespace Automarket.DAL
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-            Database.EnsureCreated();
+            //Database.EnsureDeleted();
+            //Database.EnsureCreated();
         }
 
         public DbSet<Car> Car { get; set; }
