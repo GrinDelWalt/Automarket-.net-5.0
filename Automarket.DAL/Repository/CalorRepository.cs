@@ -27,7 +27,7 @@ namespace Automarket.DAL.Repository
 
         public async Task<Color> Get(int id)
         {
-            return await _db.
+            return await _db.Сolor.FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public Task<List<Color>> Select()
