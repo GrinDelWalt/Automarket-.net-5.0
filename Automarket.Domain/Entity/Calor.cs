@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Automarket.Domain.Entity
 {
-    internal class Calor
+    public class Calor
     {
+        public int Id { get; set; }
+        public string CalorCar { get; set; }
+        public string Code { get; set; }
     }
 }
