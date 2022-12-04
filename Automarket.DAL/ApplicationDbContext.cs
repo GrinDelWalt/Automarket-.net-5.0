@@ -12,7 +12,7 @@ namespace Automarket.DAL
 
         public DbSet<Car> Car { get; set; }
         public DbSet<Image> Images { get; set; }
-        public DbSet<Calor> calors { get; set; }
+        public DbSet<Color> Сolor { get; set; }
         /// <summary>
         /// метод дублирует метод из класса стартап, настроить можно и здесь и там
         /// </summary>
@@ -25,9 +25,9 @@ namespace Automarket.DAL
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
         //    modelBuilder.Entity<Car>().HasKey(e => e.Id);
-        //    modelBuilder.Entity<Calor>().HasKey(e => e.Id);
-        //    modelBuilder.Entity<Calor>().HasOne(calor => calor.Car)
-        //        .WithOne(x => x.Calor).HasForeignKey<Car>(b => b.CalorId);
+        //    modelBuilder.Entity<Color>().HasKey(e => e.Id);
+        //    modelBuilder.Entity<Color>().HasOne(color => color.Car)
+        //        .WithOne(x => x.Color).HasForeignKey<Car>(b => b.ColorId);
         //}
     }
 }

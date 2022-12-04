@@ -13,8 +13,8 @@ namespace Automarket.Domain.Entity
         public DateTime DateCreate { get; set; }
         public string Power { get; set; }
         public int Price { get; set; }
-        public Calor Calor { get; set; }
-        public int CalorId { get; set; }
+        public Color Color { get; set; }
+        public int ColorId { get; set; }
         public string Img { get; set; }
         public TypeCar TypeCar { get; set; }
         public string Description { get; set; }

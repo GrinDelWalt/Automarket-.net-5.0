@@ -2,7 +2,7 @@
 
 namespace Automarket.DAL.Interfeces
 {
-    public interface ICalorRepository : IBaseRepository<Calor>
+    public interface ICalorRepository : IBaseRepository<Color>
     {
 
     }

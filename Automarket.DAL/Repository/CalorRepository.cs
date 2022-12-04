@@ -15,27 +15,27 @@ namespace Automarket.DAL.Repository
             _db = db;
         }
 
-        public Task<bool> Create(Calor entity)
+        public Task<bool> Create(Color entity)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<bool> Delete(Calor entity)
+        public Task<bool> Delete(Color entity)
         {
             throw new System.NotImplementedException();
         }
 
-        public async Task<Calor> Get(int id)
+        public async Task<Color> Get(int id)
         {
-            return await _db.calors.FirstOrDefaultAsync(x => x.Id == id);
+            return await _db.color.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public Task<List<Calor>> Select()
+        public Task<List<Color>> Select()
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<Calor> Update(Calor entity)
+        public Task<Color> Update(Color entity)
         {
             throw new System.NotImplementedException();
         }
