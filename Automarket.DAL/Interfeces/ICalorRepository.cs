@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Automarket.Domain.Entity;
 
 namespace Automarket.DAL.Interfeces
 {
-    internal class ICalorRepository
+    public interface ICalorRepository : IBaseRepository<Calor>
     {
+
     }
 }
