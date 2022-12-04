@@ -22,12 +22,12 @@ namespace Automarket.DAL
             //optionsBuilder.LogTo(Console.WriteLine);
             //optionsBuilder.UseSqlServer(connectionString);
         }
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<Car>().HasKey(e => e.Id);
-        //    modelBuilder.Entity<Color>().HasKey(e => e.Id);
-        //    modelBuilder.Entity<Color>().HasOne(color => color.Car)
-        //        .WithOne(x => x.Color).HasForeignKey<Car>(b => b.ColorId);
-        //}
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Car>().HasKey(e => e.Id);
+            modelBuilder.Entity<Color>().HasKey(e => e.Id);
+            modelBuilder.Entity<Color>().HasOne(color => color.Car)
+                .WithOne(x => x.Color).HasForeignKey<Car>(b => b.ColorId);
+        }
     }
 }
