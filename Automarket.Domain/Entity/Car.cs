@@ -1,5 +1,6 @@
-﻿using Automarket.Domain.Enam;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using Automarket.Domain.Enam;
 
 namespace Automarket.Domain.Entity
 {
