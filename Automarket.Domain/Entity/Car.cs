@@ -1,5 +1,6 @@
 ﻿using Automarket.Domain.Enam;
 using System;
+using System.Collections.Generic;
 
 namespace Automarket.Domain.Entity
 {
@@ -14,6 +15,7 @@ namespace Automarket.Domain.Entity
         public int Price { get; set; }
         public Color Color { get; set; }
         public int ColorId { get; set; }
+        public ICollection<Image> Images { get; set; }
         public string Img { get; set; }
         public TypeCar TypeCar { get; set; }
         public string Description { get; set; }

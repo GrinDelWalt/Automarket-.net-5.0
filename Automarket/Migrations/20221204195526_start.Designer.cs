@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Automarket.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221204154145_ref1")]
-    partial class ref1
+    [Migration("20221204195526_start")]
+    partial class start
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
