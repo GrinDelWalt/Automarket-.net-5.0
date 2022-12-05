@@ -42,8 +42,8 @@ namespace Automarket
                 options.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
             });
             services.AddControllersWithViews();
-            services.AddScoped<IBaseRepository<Car>, CarRepository>();
-            services.AddScoped<ICarService, CarService>();
+            services.InitializeRepositories();
+            services.InitializeServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
