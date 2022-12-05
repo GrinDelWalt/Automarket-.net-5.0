@@ -30,6 +30,9 @@ namespace Automarket.DAL
             modelBuilder.Entity<Color>().HasKey(e => e.Id);
             modelBuilder.Entity<Color>().HasOne(color => color.Car)
                 .WithOne(x => x.Color).HasForeignKey<Car>(b => b.ColorId);
+            modelBuilder.Entity<Image>().HasKey(e => e.Id);
+            modelBuilder.Entity<Car>().HasMany(e => e.Images).WithOne(x => x.Car);
+
         }
     }
 }
