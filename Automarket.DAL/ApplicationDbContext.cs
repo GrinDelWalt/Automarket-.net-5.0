@@ -1,4 +1,6 @@
-﻿using Automarket.Domain.Entity;
+﻿using Automarket.Domain.Enam;
+using Automarket.Domain.Entity;
+using Automarket.Domain.Helpers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
@@ -34,6 +36,34 @@ namespace Automarket.DAL
                 .WithOne(x => x.Color).HasForeignKey<Car>(b => b.ColorId);
             modelBuilder.Entity<Image>().HasKey(e => e.Id);
             modelBuilder.Entity<Car>().HasMany(e => e.Images).WithOne(x => x.Car);
+
+            modelBuilder.Entity<User>(builder =>
+            {
+                builder.ToTable("Users").HasKey(x => x.Id);
+
+                builder.HasData(new User
+                {
+                    Id = 1,
+                    Name = "ITHomester",
+                    Password = HashPasswordHelper.HashPassword("123456"),
+                    Role = Role.Admin
+                });
+
+                builder.Property(x => x.Id).ValueGeneratedOnAdd();
+
+                builder.Property(x => x.Password).IsRequired();
+                builder.Property(x => x.Name).HasMaxLength(100).IsRequired();
+
+                builder.HasOne(x => x.Profile)
+                    .WithOne(x => x.User)
+                    .HasPrincipalKey<User>(x => x.Id)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                builder.HasOne(x => x.Basket)
+                    .WithOne(x => x.User)
+                    .HasPrincipalKey<User>(x => x.Id)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
 
         }
     }
