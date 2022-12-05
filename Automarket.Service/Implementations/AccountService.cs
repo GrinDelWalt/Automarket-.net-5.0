@@ -128,7 +128,7 @@ namespace Automarket.Service.Implementations
                     };
                 }
 
-                user.Password = HashPasswordHelper.HashPassowrd(model.NewPassword);
+                user.Password = HashPasswordHelper.HashPassword(model.NewPassword);
                 await _userRepository.Update(user);
 
                 return new BaseResponse<bool>()

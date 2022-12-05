@@ -4,6 +4,9 @@
 	{
 		OK = 200,
 		InternalServerError =500,
-		ObjectNotFound = 0,
-	}
+		ObjectNotFound = 10,
+
+        UserNotFound = 0,
+        UserAlreadyExists = 1,
+    }
 }
