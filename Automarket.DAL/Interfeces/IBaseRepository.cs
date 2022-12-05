@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Automarket.DAL.Interfeces
@@ -11,17 +12,18 @@ namespace Automarket.DAL.Interfeces
         /// <param name="entity"></param>
         /// <returns></returns>
         Task<bool> Create(T entity);
-        /// <summary>
-        /// Возврат объекта по ID объект типа (Т)
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        Task<T> Get(int id);
-        /// <summary>
-        ///  возврат коллекции элеметов типа (Т)
-        /// </summary>
-        /// <returns></returns>
-        Task<List<T>> Select();
+        IQueryable<T> GetAll();
+        ///// <summary>
+        ///// Возврат объекта по ID объект типа (Т)
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns></returns>
+        //Task<T> Get(int id);
+        ///// <summary>
+        /////  возврат коллекции элеметов типа (Т)
+        ///// </summary>
+        ///// <returns></returns>
+        //Task<List<T>> Select();
         /// <summary>
         /// Удаление объекта типа (Т)
         /// </summary>

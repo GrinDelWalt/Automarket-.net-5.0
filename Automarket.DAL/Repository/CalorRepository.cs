@@ -2,6 +2,7 @@
 using Automarket.Domain.Entity;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Automarket.DAL.Repository
@@ -25,9 +26,9 @@ namespace Automarket.DAL.Repository
             throw new System.NotImplementedException();
         }
 
-        public async Task<Color> Get(int id)
+        public IQueryable<Color> GetAll()
         {
-            return await _db.Сolor.FirstOrDefaultAsync(x => x.Id == id);
+            return _db.Сolor;
         }
 
         public Task<List<Color>> Select()

@@ -1,6 +1,7 @@
 using Automarket.DAL;
 using Automarket.DAL.Interfeces;
 using Automarket.DAL.Repository;
+using Automarket.Domain.Entity;
 using Automarket.Service.Implementations;
 using Automarket.Service.Interfeces;
 using Microsoft.AspNetCore.Builder;
@@ -40,7 +41,7 @@ namespace Automarket
             });
 
             services.AddControllersWithViews();
-            services.AddScoped<ICarRepository, CarRepository>();
+            services.AddScoped<IBaseRepository<Car>, CarRepository>();
             services.AddScoped<ICarService, CarService>();
         }
 

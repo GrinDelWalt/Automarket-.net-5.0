@@ -5,17 +5,19 @@ using Automarket.Domain.Interfeces;
 using Automarket.Domain.Response;
 using Automarket.Domain.ViewModels.Car;
 using Automarket.Service.Interfeces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Automarket.Service.Implementations
 {
     public class CarService : ICarService
     {
-        private readonly ICarRepository _carRepository;
+        private readonly IBaseRepository<Car> _carRepository;
 
-        public CarService(ICarRepository carRepository)
+        public CarService(IBaseRepository<Car> carRepository)
         {
             _carRepository = carRepository;
         }
@@ -25,7 +27,7 @@ namespace Automarket.Service.Implementations
             var baseResponse = new BaseResponse<Car>();
             try
             {
-                Car car = await _carRepository.Get(id);
+                Car car = await _carRepository.GetAll().FirstOrDefaultAsync(x => x.Id == id);
                 if (car == null)
                 {
                     baseResponse.Description = "Объект не найден";
@@ -47,7 +49,7 @@ namespace Automarket.Service.Implementations
             var baseResponse = new BaseResponse<Car>();
             try
             {
-                Car car = await _carRepository.GetByModelAsync(model);
+                Car car = await _carRepository.GetAll().FirstOrDefaultAsync(x => x.Model == model);
                 if (car == null)
                 {
                     baseResponse.Description = "Объект не найден";
@@ -69,7 +71,7 @@ namespace Automarket.Service.Implementations
             var baseResponse = new BaseResponse<bool>();
             try
             {
-                Car car = await _carRepository.Get(id);
+                Car car = await _carRepository.GetAll().FirstOrDefaultAsync(x => x.Id == id);
                 if (car == null)
                 {
                     baseResponse.Description = "объект не найден";
@@ -110,7 +112,7 @@ namespace Automarket.Service.Implementations
             var baseResponse = new BaseResponse<IEnumerable<Car>>();
             try
             {
-                var cars = await _carRepository.Select();
+                var cars = await _carRepository.GetAll().ToListAsync();
                 if (cars.Count == 0)
                 {
                     baseResponse.Description = "Найдено 0 элементов";
@@ -135,7 +137,7 @@ namespace Automarket.Service.Implementations
             var baseResponse = new BaseResponse<Car>();
             try
             {
-                var car = await _carRepository.Get(id);
+                var car = await _carRepository.GetAll().FirstOrDefaultAsync(x => x.Id == id);
                 if (car == null)
                 {
                     baseResponse.Description = "Найдено 0 элементов";
@@ -146,7 +148,7 @@ namespace Automarket.Service.Implementations
                 car.Model = model.Model;
 
                 await _carRepository.Update(car);
-                
+
                 return baseResponse;
             }
             catch (Exception ex)
