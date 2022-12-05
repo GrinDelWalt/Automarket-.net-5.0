@@ -50,9 +50,9 @@ namespace Automarket.Controllers
             }
             return RedirectToAction("Error");
         }
-        [HttpGet]
-        [Authorize(Roles = "Admin")]
 
+        [HttpGet]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> Save(int id)
         {
             if (id == 0)
