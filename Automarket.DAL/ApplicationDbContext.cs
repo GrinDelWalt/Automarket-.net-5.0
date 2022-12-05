@@ -19,6 +19,8 @@ namespace Automarket.DAL
         public DbSet<Color> Сolor { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Profile> Profiles { get; set; }
+        public DbSet<Basket> Baskets { get; set; }
+        public DbSet<Order> Orders { get; set; }
         /// <summary>
         /// метод дублирует метод из класса стартап, настроить можно и здесь и там
         /// </summary>
@@ -65,6 +67,39 @@ namespace Automarket.DAL
                     .OnDelete(DeleteBehavior.Cascade);
             });
 
+            modelBuilder.Entity<Profile>(builder =>
+            {
+                builder.ToTable("Profiles").HasKey(x => x.Id);
+
+                builder.Property(x => x.Id).ValueGeneratedOnAdd();
+                builder.Property(x => x.Age);
+                builder.Property(x => x.Address).HasMaxLength(200).IsRequired(false);
+
+                builder.HasData(new Profile()
+                {
+                    Id = 1,
+                    UserId = 1
+                });
+            });
+
+            modelBuilder.Entity<Basket>(builder =>
+            {
+                builder.ToTable("Baskets").HasKey(x => x.Id);
+
+                builder.HasData(new Basket()
+                {
+                    Id = 1,
+                    UserId = 1
+                });
+            });
+
+            modelBuilder.Entity<Order>(builder =>
+            {
+                builder.ToTable("Orders").HasKey(x => x.Id);
+
+                builder.HasOne(r => r.Basket).WithMany(t => t.Orders)
+                    .HasForeignKey(r => r.BasketId);
+            });
         }
     }
 }
