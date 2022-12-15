@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Automarket", "Automarket\Automarket.csproj", "{A006950F-31D0-42D5-BEB4-510CEB7C0B7A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E80F7BA3-1AC6-4684-ADFF-BD4BC088F1D7} = {E80F7BA3-1AC6-4684-ADFF-BD4BC088F1D7}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{CDC52D4B-4426-4A19-868A-23E124F0567E}"
 EndProject

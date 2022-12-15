@@ -1,83 +1,87 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Automarket.Domain.ViewModels.Account;
+using Automarket.Service.Interfeces;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace Automarket.Controllers
 {
     public class AccountController : Controller
     {
-        // GET: AccountController
-        public ActionResult Index()
+        private readonly IAccountService _accountService;
+
+        public AccountController(IAccountService accountService)
         {
-            return View();
+            _accountService = accountService;
         }
 
-        // GET: AccountController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+        [HttpGet]
+        public IActionResult Register() => View();
 
-        // GET: AccountController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: AccountController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Register(RegisterViewModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                var response = await _accountService.Register(model);
+                if (response.StatusCode == Domain.Enam.StatusCode.OK)
+                {
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                        new ClaimsPrincipal(response.Data));
+
+                    return RedirectToAction("Index", "Home");
+                }
+                ModelState.AddModelError("", response.Description);
             }
-            catch
-            {
-                return View();
-            }
+            return View(model);
         }
 
-        // GET: AccountController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+        [HttpGet]
+        public IActionResult Login() => View();
 
-        // POST: AccountController/Edit/5
         [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var response = await _accountService.Login(model);
+                if (response.StatusCode == Domain.Enam.StatusCode.OK)
+                {
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                        new ClaimsPrincipal(response.Data));
+
+                    return RedirectToAction("Index", "Home");
+                }
+                ModelState.AddModelError("", response.Description);
+            }
+            return View(model);
+        }
+
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Logout()
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index", "Home");
         }
 
-        // GET: AccountController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: AccountController/Delete/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                var response = await _accountService.ChangePassword(model);
+                if (response.StatusCode == Domain.Enam.StatusCode.OK)
+                {
+                    return Json(new { description = response.Description });
+                }
             }
-            catch
-            {
-                return View();
-            }
+            var modelError = ModelState.Values.SelectMany(v => v.Errors);
+
+            return StatusCode(StatusCodes.Status500InternalServerError, new { modelError.FirstOrDefault().ErrorMessage });
         }
     }
 }
