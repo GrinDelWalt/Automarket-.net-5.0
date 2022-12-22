@@ -35,7 +35,7 @@ namespace Automarket.DAL
             modelBuilder.Entity<Image>(builder => 
             {
                 builder.ToTable("Image").HasKey(x=> x.Id);
-                builder.HasOne(x)
+                builder.HasOne(x => x.Car).WithMany(x=> x.Images).HasPrincipalKey<Car>(x=>x.);
             });
             modelBuilder.Entity<Color>(builder =>
             {
