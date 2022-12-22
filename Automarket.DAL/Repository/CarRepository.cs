@@ -33,7 +33,7 @@ namespace Automarket.DAL.Repository
             return true;
         }
 
-        public IQueryable<Car> GetAll()
+        public IQueryable<Car> GetAll() // унимерсальная функция возврата
         {
             return _db.Car;
         }

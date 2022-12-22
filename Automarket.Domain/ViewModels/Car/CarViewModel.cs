@@ -1,4 +1,5 @@
 ﻿using Automarket.Domain.Enam;
+using System.Collections.Generic;
 
 namespace Automarket.Domain.ViewModels.Car
 {
@@ -11,5 +12,6 @@ namespace Automarket.Domain.ViewModels.Car
         public string Description { get; set; }
         public int Price { get; set; }
         public TypeCar TypeCar { get; set; }
+        public List<string> Images { get; set; }
     }
 }

@@ -32,7 +32,24 @@ namespace Automarket.DAL
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Car>().HasKey(e => e.Id);
+            modelBuilder.Entity<Image>(builder => 
+            {
+                builder.ToTable("Image").HasKey(x=> x.Id);
+                builder.HasOne(x)
+            });
+            modelBuilder.Entity<Color>(builder =>
+            {
+                builder.ToTable("Color").HasKey(x => x.Id);
+            });
+                
+
+            modelBuilder.Entity<Car>(builder =>
+            {
+                builder.ToTable("Car").HasKey(x => x.Id);
+            });
+
+
+            
             modelBuilder.Entity<Color>().HasKey(e => e.Id);
             modelBuilder.Entity<Color>().HasOne(color => color.Car)
                 .WithOne(x => x.Color).HasForeignKey<Car>(b => b.ColorId);

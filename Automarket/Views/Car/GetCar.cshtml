@@ -1,4 +1,6 @@
 ﻿@model Automarket.Domain.Entity.Car
+
+
 @{
     ViewData["Title"] = "GetCAr";
     Layout = "_Layout";
@@ -8,8 +10,11 @@
 <div class="card mb-3">
     <div class="row g-0">
         <div class="col-md-4">
-            <img src="" 
+            @foreach (var item in collection)
+            {
+                     <img src="" 
                  class="img-fluid rounded-start rounded" alt="@Model?.Brend">
+            }
         </div>
         <div class="col-md-4">
             <div class="card-body">
