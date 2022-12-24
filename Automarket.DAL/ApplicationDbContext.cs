@@ -11,7 +11,7 @@ namespace Automarket.DAL
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
             //Database.EnsureDeleted();
-            Database.EnsureCreated();
+            //Database.EnsureCreated();
         }
 
         public DbSet<Car> Car { get; set; }
@@ -34,12 +34,19 @@ namespace Automarket.DAL
         {
             modelBuilder.Entity<Image>(builder => 
             {
-                builder.ToTable("Image").HasKey(x=> x.Id);
-                builder.HasOne(x => x.Car).WithMany(x=> x.Images).HasPrincipalKey<Car>(x=>x.);
+                builder.ToTable("Image")
+                       .HasKey(x=> x.Id);
+                builder.HasOne(x => x.Car)
+                       .WithMany(x=> x.Images)
+                       .HasForeignKey(x=> x.CarId);
             });
             modelBuilder.Entity<Color>(builder =>
             {
-                builder.ToTable("Color").HasKey(x => x.Id);
+                builder.ToTable("Color")
+                       .HasKey(x => x.Id);
+                builder.HasOne(x => x.Car)
+                       .WithOne(x => x.Color)
+                       .HasForeignKey<Color>(x => x.CarId);
             });
                 
 
@@ -48,13 +55,7 @@ namespace Automarket.DAL
                 builder.ToTable("Car").HasKey(x => x.Id);
             });
 
-
             
-            modelBuilder.Entity<Color>().HasKey(e => e.Id);
-            modelBuilder.Entity<Color>().HasOne(color => color.Car)
-                .WithOne(x => x.Color).HasForeignKey<Car>(b => b.ColorId);
-            modelBuilder.Entity<Image>().HasKey(e => e.Id);
-            modelBuilder.Entity<Car>().HasMany(e => e.Images).WithOne(x => x.Car);
 
             modelBuilder.Entity<User>(builder =>
             {
@@ -74,14 +75,14 @@ namespace Automarket.DAL
                 builder.Property(x => x.Name).HasMaxLength(100).IsRequired();
 
                 builder.HasOne(x => x.Profile)
-                    .WithOne(x => x.User)
-                    .HasPrincipalKey<User>(x => x.Id)
-                    .OnDelete(DeleteBehavior.Cascade);
+                       .WithOne(x => x.User)
+                       .HasPrincipalKey<User>(x => x.Id)
+                       .OnDelete(DeleteBehavior.Cascade);
 
                 builder.HasOne(x => x.Basket)
-                    .WithOne(x => x.User)
-                    .HasPrincipalKey<User>(x => x.Id)
-                    .OnDelete(DeleteBehavior.Cascade);
+                       .WithOne(x => x.User)
+                       .HasPrincipalKey<User>(x => x.Id)
+                       .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<Profile>(builder =>
@@ -114,8 +115,9 @@ namespace Automarket.DAL
             {
                 builder.ToTable("Orders").HasKey(x => x.Id);
 
-                builder.HasOne(r => r.Basket).WithMany(t => t.Orders)
-                    .HasForeignKey(r => r.BasketId);
+                builder.HasOne(r => r.Basket)
+                       .WithMany(t => t.Orders)
+                       .HasForeignKey(r => r.BasketId);
             });
         }
     }
