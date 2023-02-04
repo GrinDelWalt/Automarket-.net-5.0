@@ -67,7 +67,7 @@ namespace Automarket.Controllers
             return RedirectToAction("Error");
         }
         [HttpPost]
-        public async Task<IActionResult> Save(CarViewModel model)
+        public async Task<IActionResult> Save(CarsViewModel model)
         {
             if (ModelState.IsValid)
             {

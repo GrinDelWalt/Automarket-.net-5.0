@@ -16,25 +16,42 @@ namespace Automarket.Service.Implementations
     public class CarService : ICarService
     {
         private readonly IBaseRepository<Car> _carRepository;
+        private readonly IBaseRepository<Image> _imageRepository;
 
-        public CarService(IBaseRepository<Car> carRepository)
+        public CarService(IBaseRepository<Car> carRepository, IBaseRepository<Image> imageRepositiory)
         {
+            _imageRepository = imageRepositiory;
             _carRepository = carRepository;
         }
 
-        public async Task<IBaseResponse<Car>> GetCar(int id)
+        public async Task<IBaseResponse<CarViewModel>> GetCar(int id)
         {
-            var baseResponse = new BaseResponse<Car>();
+            var baseResponse = new BaseResponse<CarViewModel>();
             try
             {
                 Car car = await _carRepository.GetAll().FirstOrDefaultAsync(x => x.Id == id);
+                CarViewModel carViewModel = new()
+                {
+                    Id= car.Id,
+                    Brend = car.Brend,
+                    Model = car.Model,
+                    Power = car.Power,
+                    Description= car.Description,
+                    Price= car.Price,
+                    TypeCar= car.TypeCar,
+                };
+                var image = await _imageRepository.GetAll();
+                                                  //.Include(x => x.Car)
+                                                  //.ThenInclude(x => x.Images)
+                                                  //.Where(x => x.CarId == car.Id);
+
                 if (car == null)
                 {
                     baseResponse.Description = "Объект не найден";
                     baseResponse.StatusCode = StatusCode.ObjectNotFound;
                     return baseResponse;
                 }
-                baseResponse.Data = car;
+                //baseResponse.Data = car;
                 baseResponse.StatusCode = StatusCode.OK;
                 return baseResponse;
             }
@@ -87,9 +104,9 @@ namespace Automarket.Service.Implementations
                 return baseResponse;
             }
         }
-        public async Task<IBaseResponse<CarViewModel>> CreateCar(CarViewModel carViewModel)
+        public async Task<IBaseResponse<CarsViewModel>> CreateCar(CarsViewModel carViewModel)
         {
-            var baseResponse = new BaseResponse<CarViewModel>();
+            var baseResponse = new BaseResponse<CarsViewModel>();
             try
             {
                 Car car = new Car()
@@ -132,7 +149,7 @@ namespace Automarket.Service.Implementations
             }
         }
 
-        public async Task<IBaseResponse<Car>> Edit(int id, CarViewModel model)
+        public async Task<IBaseResponse<Car>> Edit(int id, CarsViewModel model)
         {
             var baseResponse = new BaseResponse<Car>();
             try

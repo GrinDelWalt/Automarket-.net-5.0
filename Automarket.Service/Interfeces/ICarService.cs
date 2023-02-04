@@ -11,13 +11,11 @@ namespace Automarket.Service.Interfeces
 	public interface ICarService
 	{
 		Task<IBaseResponse<IEnumerable<Car>>> GetAllCars();
-
-		Task<IBaseResponse<Car>> GetCar(int id);
-
+		Task<IBaseResponse<CarViewModel>> GetCar(int id);
 		Task<IBaseResponse<Car>> GetCarByModel(string model);
 		Task<IBaseResponse<bool>> DeleteCar(int id);
-		Task<IBaseResponse<CarViewModel>> CreateCar(CarViewModel carViewModel);
-		Task<IBaseResponse<Car>> Edit(int id, CarViewModel model);
+		Task<IBaseResponse<CarsViewModel>> CreateCar(CarsViewModel carViewModel);
+		Task<IBaseResponse<Car>> Edit(int id, CarsViewModel model);
 
     }
 }
