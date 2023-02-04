@@ -29,21 +29,29 @@ namespace Automarket.Service.Implementations
             var baseResponse = new BaseResponse<CarViewModel>();
             try
             {
+                List<Image> image = _imageRepository.GetAll()
+                                                  .Include(x => x.Car)
+                                                  .ThenInclude(x => x.Images)
+                                                  .Where(x => x.CarId == id).ToList();
+
+                List<string> images = new List<string>();
+                foreach (var imageItem in image)
+                {
+                    images.Add(imageItem.Link);
+                }
                 Car car = await _carRepository.GetAll().FirstOrDefaultAsync(x => x.Id == id);
                 CarViewModel carViewModel = new()
                 {
-                    Id= car.Id,
+                    Id = car.Id,
                     Brend = car.Brend,
                     Model = car.Model,
                     Power = car.Power,
-                    Description= car.Description,
-                    Price= car.Price,
-                    TypeCar= car.TypeCar,
+                    Description = car.Description,
+                    Price = car.Price,
+                    TypeCar = car.TypeCar,
+                    Images = images,
+                    DateCreate = car.DateCreate,
                 };
-                var image = await _imageRepository.GetAll();
-                                                  //.Include(x => x.Car)
-                                                  //.ThenInclude(x => x.Images)
-                                                  //.Where(x => x.CarId == car.Id);
 
                 if (car == null)
                 {
@@ -51,7 +59,7 @@ namespace Automarket.Service.Implementations
                     baseResponse.StatusCode = StatusCode.ObjectNotFound;
                     return baseResponse;
                 }
-                //baseResponse.Data = car;
+                baseResponse.Data = carViewModel;
                 baseResponse.StatusCode = StatusCode.OK;
                 return baseResponse;
             }

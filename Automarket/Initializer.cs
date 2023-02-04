@@ -16,6 +16,7 @@ namespace Automarket
             services.AddScoped<IBaseRepository<Profile>, ProfileRepository>();
             services.AddScoped<IBaseRepository<Basket>, BasketRepository>();
             services.AddScoped<IBaseRepository<Order>, OrderRepository>();
+            services.AddScoped<IBaseRepository<Image>, ImageRepository>();
         }
 
         public static void InitializeServices(this IServiceCollection services)
