@@ -29,16 +29,13 @@ namespace Automarket.Service.Implementations
             var baseResponse = new BaseResponse<CarViewModel>();
             try
             {
-                List<Image> image = _imageRepository.GetAll()
+                List<string> images = _imageRepository.GetAll()
                                                   .Include(x => x.Car)
                                                   .ThenInclude(x => x.Images)
-                                                  .Where(x => x.CarId == id).ToList();
-
-                List<string> images = new List<string>();
-                foreach (var imageItem in image)
-                {
-                    images.Add(imageItem.Link);
-                }
+                                                  .Where(x => x.CarId == id)
+                                                  .Select(x => x.Link)
+                                                  .ToList();
+               
                 Car car = await _carRepository.GetAll().FirstOrDefaultAsync(x => x.Id == id);
                 CarViewModel carViewModel = new()
                 {
