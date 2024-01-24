@@ -32,13 +32,13 @@ namespace Automarket.DAL
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Image>(builder => 
+            modelBuilder.Entity<Image>(builder =>
             {
                 builder.ToTable("Image")
-                       .HasKey(x=> x.Id);
+                       .HasKey(x => x.Id);
                 builder.HasOne(x => x.Car)
-                       .WithMany(x=> x.Images)
-                       .HasForeignKey(x=> x.CarId);
+                       .WithMany(x => x.Images)
+                       .HasForeignKey(x => x.CarId);
             });
             modelBuilder.Entity<Color>(builder =>
             {
@@ -48,14 +48,14 @@ namespace Automarket.DAL
                        .WithOne(x => x.Color)
                        .HasForeignKey<Color>(x => x.CarId);
             });
-                
+
 
             modelBuilder.Entity<Car>(builder =>
             {
                 builder.ToTable("Car").HasKey(x => x.Id);
             });
 
-            
+
 
             modelBuilder.Entity<User>(builder =>
             {
@@ -64,7 +64,7 @@ namespace Automarket.DAL
                 builder.HasData(new User
                 {
                     Id = 1,
-                    Name = "ITHomester",
+                    Name = "Wizort",
                     Password = HashPasswordHelper.HashPassword("123456"),
                     Role = Role.Admin
                 });

@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Automarket.Domain.Entity
 {
     public class Basket
     {
-        public long Id { get; set; }
+        public Guid Id { get; set; }
 
         public User User { get; set; }
 
-        public long UserId { get; set; }
+        public Guid UserId { get; set; }
 
         public List<Order> Orders { get; set; }
     }

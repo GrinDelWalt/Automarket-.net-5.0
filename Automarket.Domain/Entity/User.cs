@@ -1,10 +1,11 @@
 ﻿using Automarket.Domain.Enam;
+using System;
 
 namespace Automarket.Domain.Entity
 {
     public class User
     {
-        public long Id { get; set; }
+        public Guid Id { get; set; }
 
         public string Password { get; set; }
 
@@ -14,6 +15,10 @@ namespace Automarket.Domain.Entity
 
         public Profile Profile { get; set; }
 
+        public Guid ProfileId { get; set; }
+
         public Basket Basket { get; set; }
+
+        public Guid BasketId { get; set; }
     }
 }

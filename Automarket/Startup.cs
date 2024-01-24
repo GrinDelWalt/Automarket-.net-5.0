@@ -1,9 +1,4 @@
 using Automarket.DAL;
-using Automarket.DAL.Interfeces;
-using Automarket.DAL.Repository;
-using Automarket.Domain.Entity;
-using Automarket.Service.Implementations;
-using Automarket.Service.Interfeces;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
 using System;
 
 namespace Automarket

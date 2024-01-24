@@ -1,10 +1,12 @@
-﻿namespace Automarket.Domain.Entity
+﻿using System;
+
+namespace Automarket.Domain.Entity
 {
     public class Image
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Link { get; set; }
         public Car Car { get; set; }
-        public int CarId { get; set; }
+        public Guid CarId { get; set; }
     }
 }
